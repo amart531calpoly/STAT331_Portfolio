@@ -1,0 +1,225 @@
+---
+title: "Andrew Martinez Stat 331 Lab 3"
+format:
+  html:
+    code-fold: true
+  
+editor: visual
+---
+
+## Lab 3 Hip-Hop Lyrics
+
+### Declaring Libraries
+
+```{r}
+#| message = FALSE
+library(tidyverse)
+library(here)
+```
+
+### Loading In Data
+
+```{r}
+#| message = FALSE
+
+hiphop <- read.csv(here::here("supporting_artifacts", "Lab & Challenge 3", 
+                              "hiphop.csv"))
+
+```
+
+## Summary Of Dataset
+
+The Hip-Hop dataset outlines various definitions of vocabulary commonly found in AAE (African-American English) dialect. The study's participants are students enrolled in undergraduate linguistics, sociology, and music classes at the university of Minnesota. These participants were coded as subjects, and their responses and demographic info are listed next to each word in the dataset. These definitions were given by 168 participants from various backgrounds. The purpose of the data set is to see if musical tastes, with a focus in Hip-Hop, can predict AAE knowledge to a higher degree than ethnicity, social network phenomena, and general pop-culture knowledge. The rows of the dataset are each unique definition for a specific vocab word found within AAE. The NA values in this dataset were replaced with a float value of 0.0, the benefit of this would be that you can do summary statistics without having errors, however the summary statistics would be heavily skewed due to the value of 0 pulling them downwards. Additionally, some of the variables with NA have the mean value of the variable instead of an NA. Replacing some of the NA values with the mean of the dataset will pull the percentiles closer to the mean.
+
+### Cleaning the Dataset
+
+```{r}
+clean_hiphop <- hiphop |> 
+  mutate(across(where(is.character), factor)) |> 
+  filter(city != 0, county != 0, !is.na(numPreferredArtists), 
+         !is.na(numOverallArtists))
+```
+
+### Changes Made:
+
+-   Changed Strings into Factors
+
+-   Filtered out rows where city & county = 0
+
+-   filtered out rows where numPreferredArtists & numOverallArtists = NA
+
+Explanation:
+
+I filtered out rows with no city / county values, as I do not like having incomplete rows of data within my dataset. I altered the character variables to factors for more efficiency, as factor variables have more efficient memory usage. Lastly, I filtered out rows where numPreferredArtists & numOverallArtists = NA because I do not like rows of incomplete data within my dataset.
+
+### Unique Words Studied
+
+```{r}
+distinct_hiphop <- distinct(clean_hiphop,word)
+count(distinct_hiphop)
+
+```
+
+As seen from the code, there are 64 unique words in the data set.
+
+### Re-categorizing The Ethnic Variable
+
+```{r}
+clean_hiphop <- clean_hiphop |> 
+  mutate(ethnic_categorical = ifelse(ethnic == "white", 
+                         "white", 
+                         "non-white")) |> 
+  relocate(ethnic_categorical, .after = ethnic)
+  
+```
+
+### 
+
+### Investigation Of Demographics Within Dataset
+
+I use the normal "unclean" dataset for this investigation as I would like to have more datapoints to truly see some statistical analysis of the whole dataset rather than a subset. Additionally, The NA & 0 values i cleaned would not make a difference in this investigation.
+
+### Variable: Sex
+
+```{r}
+
+sex_demographic_clean_hiphop <- hiphop |> 
+  distinct(subj, .keep_all = TRUE) |> 
+  count(sex)
+sex_demographic_clean_hiphop
+
+```
+
+### Variable: Age
+
+```{r}
+age_demographic_clean_hiphop <- hiphop |> 
+  distinct(subj, .keep_all = TRUE) |> 
+  summarise(mean_age = mean(age))
+age_demographic_clean_hiphop
+```
+
+### Variable: Ethnic
+
+```{r}
+
+ethnic_demographic_clean_hiphop <- hiphop |> 
+  distinct(subj, .keep_all = TRUE) |> 
+  group_by(ethnic) |> 
+  count(ethnic)
+ethnic_demographic_clean_hiphop
+```
+
+### End Conclusion:
+
+As a result of the filtering and analysis above, a vast majority of the participants seem to be female, white, and the participants have an average age of 20.02 years old. For reference, about 69.64% of the participants were female, and 80.35% of the participants were white.
+
+### Plot 1
+
+```{r}
+plot_hiphop <- hiphop |>  
+    distinct(subj, .keep_all = TRUE)
+  ggplot(plot_hiphop, aes(x= age, y= ethnic, color = sex)) +
+  geom_boxplot() +
+  labs(x= "Age Of Participant",
+       y= "Ethnicity of Participant",
+       color = "sex")
+```
+
+### Plot 2
+
+```{r}
+ggplot(plot_hiphop, aes(x = age)) +
+  geom_density()
+
+```
+
+### Familiar Words
+
+#### People Under 20
+
+```{r}
+young_clean_hiphop_max <- clean_hiphop |> 
+  filter(age < 20) |> 
+  select(word, familiarity) |>
+  group_by(word) |> 
+  summarise(mean = mean(familiarity), n = n()) |>
+  slice_max(mean)
+
+young_clean_hiphop_min <- clean_hiphop |> 
+  filter(age < 20) |> 
+  select(word, familiarity) |>
+  group_by(word) |> 
+  summarise(mean = mean(familiarity), n = n()) |>
+  slice_min(mean)
+
+young_clean_hiphop_max
+young_clean_hiphop_min
+  
+```
+
+Most Familiar: "Feel Me"
+
+Least Familiar: "The Nation"
+
+### Non-White Women
+
+```{r}
+non_white_clean_hiphop_max <- clean_hiphop |> 
+  filter(ethnic != "white", sex == "Female") |>
+  group_by(word) |> 
+  summarise(mean = mean(familiarity), n = n()) |> 
+  slice_max(mean)
+
+non_white_clean_hiphop_min <- clean_hiphop |> 
+  filter(ethnic != "white", sex == "Female") |>
+  group_by(word) |> 
+  summarise(mean = mean(familiarity), n = n()) |> 
+  slice_min(mean)
+
+non_white_clean_hiphop_max
+non_white_clean_hiphop_min
+```
+
+Most Familiar: "What It Do"
+
+Least Familiar: All of the 8 phrases from the 2nd above.
+
+### White Men Above The Age Of 30
+
+```{r}
+white_30_clean_hiphop_max <- clean_hiphop |> 
+  filter(ethnic == "white", sex == "Male", age > 30) |> 
+  group_by(word) |> 
+  summarise(mean = mean(familiarity), n = n()) |> 
+  slice_max(mean)
+
+
+white_30_clean_hiphop_min <- clean_hiphop |> 
+  filter(ethnic == "white", sex == "Male", age > 30) |> 
+  group_by(word) |> 
+  summarise(mean = mean(familiarity), n = n()) |> 
+  slice_min(mean)
+
+white_30_clean_hiphop_max
+white_30_clean_hiphop_min
+```
+
+Most Familiar: 3 phrases from the top output
+
+Least Familiar: All of the 59 phrases from the 2nd above
+
+### Finding Justin Bieber
+
+```{r}
+justin_bieber_data <- hiphop |> 
+  distinct(subj, .keep_all = TRUE) |> 
+  filter(sex == "Male", age >= 17, age <= 23, ethnic == "white", city >= 10000,
+         city <= 60000) |> 
+  slice_max(bieber)
+justin_bieber_data$subj
+```
+
+Note: I opted to not include the output for this slice as it was extremely long. Please see the dataset for proof that subject 17 has the highest Bieber score.
+
+I would say that subject 17 is Justin Bieber. He fulfills the gender, age, and city requirements, and has the highest "Bieber" score of the dataset.

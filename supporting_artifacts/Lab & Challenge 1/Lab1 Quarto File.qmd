@@ -1,0 +1,50 @@
+---
+title: "Lab1"
+author: "Andrew Martinez"
+format:
+  html:
+    fontcolor: 'red'
+    font-family: Georgia
+    code-fold: True
+editor: visual
+---
+
+Changes: Changed all of the font to Georgia in HTML, also changed the font color to red.
+
+## Summarizing The Cars Data Set
+
+This data set contains information about Cars. The data was collected in 1920s.It has 50 rows and 2 variables.
+
+```{r}
+summary(cars)
+```
+
+## Creating & Labeling The Pressure Data Set
+
+This chunk of R code displays a plot of the Pressure data set! This includes a scatter plot of Temperature, measured in Celsius, on the X axis and Pressure on the Y Axis.
+
+```{r}
+#| label: fig-pressure
+#| fig-cap-location: top
+#| fig-cap: "Scatter Plot of Pressure & Temperature"
+#| fig-align: center
+
+pressure_plot <- plot(pressure, xlab = "Temperature (C)", ylab = "Pressure (mm)")
+
+```
+
+## Creating & Labeling Scatter Plots For The Cars Data Set
+
+Similarly to the prior R code chunk, this chunk of code will display scatter plots. However, the data set utilized is Cars, which analyzes the relationship between Speed in MPH, and Stopping Distance in feet.
+
+1)  Add Color to the Plot
+
+2)  Have a title for the scatter plot.
+
+```{r}
+#| label: fig-cars
+#| layout-ncol: 2
+dist <- cars$dist
+hist(dist, xlab = "Stopping Distance (Feet)", ylab = "Frequency", main = "Frequency of Stopping Distances In Feet", col = "blue")
+plot(cars, xlab = "Speed (MPH)", ylab = "Stopping Distance (Feet)")
+```

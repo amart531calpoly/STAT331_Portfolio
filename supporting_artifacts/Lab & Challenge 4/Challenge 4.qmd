@@ -1,0 +1,60 @@
+---
+title: "Challenge 4 Stat 331 Andrew Martinez"
+format:
+  html:
+    code-fold: true
+editor: visual
+---
+
+## Challenge 4
+
+## Housing Dataset
+
+The housing dataset is a sample of 40 randomly selected housing prices, 10 from each area, that were selected on Zillow. As a warning, it is likely that this very low amount of sample size can lead to skewed results of analysis.
+
+### Loading In Datasets
+
+```{r}
+#| message: FALSE
+
+library(tidyverse)
+library(here)
+library(readxl)
+avocado <- read_csv(here::here("supporting_artifacts", "Lab & Challenge 4",  
+                              "avocado.csv"))
+housing_data <- read_xlsx(here::here("supporting_artifacts", "Lab & Challenge 4",  
+                                    "Housing DataSet.xlsx"))
+
+```
+
+### Altering / Joining Dataset
+
+```{r}
+housing_data <- housing_data |> 
+  group_by(region) |> 
+  mutate( mean_housing_price = mean(`Housing Price`))
+
+avocado_housing_data <- avocado |> 
+  inner_join(housing_data, by = "region") |> 
+  group_by(region, type) |> 
+  mutate(avg_avg_price = mean(AveragePrice)) |> 
+  rename(small = `4046`, large = `4225`, extralarge = `4770`) 
+```
+
+## Ggplot
+
+```{r}
+
+ggplot(data = avocado_housing_data, mapping = aes(x = avg_avg_price, y = mean_housing_price, color = region))+
+  geom_point()+
+  labs(title = "Average Avocado Price In Comparison To Avg Housing Price",
+       color = "Region",
+       x = "Average Avocado Price",
+       y = "Average Housing Price"
+       )+
+  facet_wrap(~type)
+```
+
+## Conclusion:
+
+Looking at the data here, there is no distinguishable pattern in the dataset between average avocado price and average housing price, including when you account for average conventional and average organic price. Initially, my hunch was that housing prices would increase as the average avocado price would increase, but this may be due to a sampling error in the Housing dataset.

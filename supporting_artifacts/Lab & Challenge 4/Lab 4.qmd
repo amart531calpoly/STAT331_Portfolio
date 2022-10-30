@@ -1,0 +1,155 @@
+---
+title: "Lab 4 Stat 331 Andrew Martinez"
+format:
+  html:
+    code-fold: true
+editor: visual
+---
+
+## Loading In Data & Libraries
+
+```{r}
+#| message: FALSE
+library(tidyverse)
+library(here)
+avocado <- read_csv(here::here("supporting_artifacts", "Lab & Challenge 4",
+                              "avocado.csv"))
+```
+
+## Identifying Important Regions
+
+```{r}
+library(dplyr)
+
+avocado_regions_dataframe <- data.frame(
+  region = c("Midsouth", "Northeast", "Plains", "Southeast", "West", "SouthCentral", "GreatLakes" )
+)
+
+avocado_clean_regions <- avocado |>
+  semi_join(y = avocado_regions_dataframe, by = "region") |> 
+  separate(col=Date, into=c('Year', 'Month', "Day"), sep='-') |>
+  rename(small = `4046`, large = `4225`, extralarge = `4770`) 
+
+avocado_clean_cities <- avocado |>  
+  anti_join(y = avocado_clean_regions, by = "region") |> 
+  separate(col=Date, into=c('Year', 'Month', "Day"), sep='-') |>
+  rename(small = `4046`, large = `4225`, extralarge = `4770`) 
+
+#unique_regions = unique(avocado$region)
+#print(unique_regions)
+
+
+#unique_cities = unique(avocado_cities$region)
+#print(unique_cities)
+```
+
+## Exercise
+
+Exercise 1:
+
+```{r}
+avocado_region_max_2017 <- avocado_clean_regions |> 
+  filter(type == "organic") |> 
+  group_by(region) |> 
+  summarise(sum_small_total_volume = sum(small)) |> 
+  filter(region != "TotalUS") |> 
+  slice_max(sum_small_total_volume)
+
+avocado_region_max_2017
+  
+```
+
+### Answer:
+
+The West Region sold the most organic, small Hass avocados in 2017
+
+Exercise 2:
+
+```{r}
+avocado_max_month <- avocado |> 
+  separate(col=Date, into=c('Year', 'Month', "Day"), sep='-') |> 
+  group_by(Month) |> 
+  summarise(total_volume_for_months = sum(`4046` + `4225` + `4770`)) |> 
+  slice_max(total_volume_for_months)
+avocado_max_month
+```
+
+### Answer:
+
+February is the month with the highest volume of avocado sales.
+
+Exercise 3:
+
+```{r}
+avocado_max_totalvolume_top5 <- avocado_clean_cities |> 
+  group_by(region) |> 
+  summarise(Total_Volume_By_City = sum(`Total Volume`)) |> 
+  slice_max(Total_Volume_By_City, n = 5)
+
+avocado_max_totalvolume_top5
+
+avocado_max_totalvolume_top5_plot <- avocado_clean_cities |> 
+  semi_join(avocado_max_totalvolume_top5, by = "region") |> 
+  group_by(region)
+
+ggplot(avocado_max_totalvolume_top5_plot, aes(x = region, y = `Total Volume`)) +
+         geom_boxplot()
+  
+```
+
+### Answer:
+
+California, GreatLakes, Los Angeles, New York, and South Central sold the most total avocados.
+
+### Reshaping
+
+#### Creating Reshaping data
+
+```{r}
+avocado_regions_dataframe <- data.frame(
+  region = c("LosAngeles", "SanDiego", "Sacramento", "SanFrancisco"))
+```
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+organic_vs_conventional_avocado <- avocado |>
+  semi_join(avocado_regions_dataframe, by = "region") |> 
+  group_by(region, type) |> 
+  summarise(avg_avocado_price = mean(AveragePrice)) |> 
+  pivot_wider(names_from = "type", values_from = "avg_avocado_price") |> 
+  mutate(`Difference In Avg Price For Conventional and Organic` = organic - conventional)
+
+ggplot(organic_vs_conventional_avocado, aes(x = region,
+    y = `Difference In Avg Price For Conventional and Organic`))+
+geom_point()
+
+```
+
+### Answer:
+
+San Francisco has the highest average price difference between conventional and organic Avocados! This is shown by the two graphs above, where the top plots the mean avocado price for both conventional and organic, while the bottom plot simply plots the difference between the two.
+
+```{r}
+proportion_avocado_data <- avocado |>
+  semi_join(avocado_regions_dataframe, by = "region") |> 
+  rename(
+    "Small" = "4046",
+    "Large" = "4225",
+    "XLarge" = "4770"
+  ) |> 
+  pivot_longer("Small":"XLarge",
+               names_to = "Avocado Size",
+               values_to = "Number Of Avocados") |> 
+  mutate(Proportion = `Number Of Avocados` / mean(`Total Volume`))
+
+proportion_avocado_data |> 
+  ggplot(mapping = aes(x = region, y = Proportion, fill = `Avocado Size`))+
+  geom_bar(position = position_fill(reverse = FALSE), stat = "identity") +
+  labs(x = "Regions of CA", y = "Proportion of Mean Avocados Sold") + 
+  ##Function was shown to me on discord lav chat and found in stack overflow
+  scale_x_discrete(guide = guide_axis(n.dodge=2))+
+  facet_wrap(~type)
+  
+
+```
