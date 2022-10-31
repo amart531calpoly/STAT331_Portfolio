@@ -81,6 +81,8 @@ ggplot(data = time_series_surveys, mapping = aes(x = avg_weight,
 ## Time Series Plots By Week
 
 ```{r}
+#| message: FALSE
+#| warning: false
 time_series_surveys_by_week_count <- surveys |> 
   count(day_of_week)
 

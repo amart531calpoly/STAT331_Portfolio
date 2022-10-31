@@ -87,16 +87,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<script src="lab2_files/libs/clipboard/clipboard.min.js"></script>
-<script src="lab2_files/libs/quarto-html/quarto.js"></script>
-<script src="lab2_files/libs/quarto-html/popper.min.js"></script>
-<script src="lab2_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="lab2_files/libs/quarto-html/anchor.min.js"></script>
-<link href="lab2_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="lab2_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="lab2_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="lab2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="lab2_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="Lab 2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Lab 2_files/libs/quarto-html/quarto.js"></script>
+<script src="Lab 2_files/libs/quarto-html/popper.min.js"></script>
+<script src="Lab 2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Lab 2_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Lab 2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Lab 2_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Lab 2_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Lab 2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Lab 2_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -283,7 +283,7 @@ see the code you used to address this question!  --></p>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="lab2_files/figure-html/scatterplot-1.png" class="img-fluid" width="672"></p>
+<p><img src="Lab-2_files/figure-html/scatterplot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We can see there are <strong>a lot</strong> of points plotted on top of each other. Let’s try and modify this plot to extract more information from it.</p>
@@ -297,7 +297,7 @@ see the code you used to address this question!  --></p>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="lab2_files/figure-html/alpha-1.png" class="img-fluid" width="672"></p>
+<p><img src="Lab-2_files/figure-html/alpha-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Well, that is better, but there are still large clumps of data being plotted on top of each other. Let’s try another tool!</p>
@@ -311,7 +311,7 @@ see the code you used to address this question!  --></p>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> .<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="lab2_files/figure-html/jitter-1.png" class="img-fluid" width="672"></p>
+<p><img src="Lab-2_files/figure-html/jitter-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -329,7 +329,7 @@ see the code you used to address this question!  --></p>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="lab2_files/figure-html/facet-1.png" class="img-fluid" width="672"></p>
+<p><img src="Lab-2_files/figure-html/facet-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -346,7 +346,7 @@ see the code you used to address this question!  --></p>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="lab2_files/figure-html/boxplot-jitter-points-1.png" class="img-fluid" width="672"></p>
+<p><img src="Lab-2_files/figure-html/boxplot-jitter-points-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>A fundamental complaint of boxplots is that they do not plot the raw data. However, with <strong>ggplot</strong> we can add the raw points on top of the boxplots!</p>
@@ -360,7 +360,7 @@ see the code you used to address this question!  --></p>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="lab2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="Lab-2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Alright, this should look less than optimal. Your points should appear rather stacked on top of each other. To make them less stacked, we need to jitter them a bit, using <code>geom_jitter()</code>.</p>
@@ -374,7 +374,7 @@ see the code you used to address this question!  --></p>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">color =</span> <span class="st">"tomato"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="lab2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="Lab-2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>That should look much better! But there is another problem! You should notice that in the code above there are <strong>both</strong> red points and black points. So, some of the observations are being plotted twice!</p>
@@ -388,7 +388,7 @@ see the code you used to address this question!  --></p>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">color =</span> <span class="st">"tomato"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="lab2_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="Lab-2_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -410,7 +410,7 @@ see the code you used to address this question!  --></p>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> .<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="lab2_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="Lab-2_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Some people (and journals) prefer for boxplots to be stacked with a specific orientation! Let’s practice changing the orientation of our boxplots.</p>
@@ -429,7 +429,7 @@ see the code you used to address this question!  --></p>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> .<span class="dv">5</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="lab2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="Lab-2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
