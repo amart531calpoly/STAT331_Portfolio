@@ -12,7 +12,7 @@ editor: visual
 #| message: false
 library(tidyverse)
 library(here)
-BlackFootFish = read_csv(here::here("Week 7", "Lab 7", "BlackfootFish.csv"))
+BlackFootFish = read_csv(here::here("supporting_artifacts", "Lab & Challenge 7", "BlackfootFish.csv"))
 ```
 
 ## Part One
