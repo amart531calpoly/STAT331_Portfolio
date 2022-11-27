@@ -15,7 +15,7 @@ The housing dataset is a sample of 40 randomly selected housing prices, 10 from 
 ### Loading In Datasets
 
 ```{r}
-#| message: FALSE
+#| message: false
 
 library(tidyverse)
 library(here)

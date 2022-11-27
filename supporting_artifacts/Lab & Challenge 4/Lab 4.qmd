@@ -21,26 +21,20 @@ avocado <- read_csv(here::here("supporting_artifacts", "Lab & Challenge 4",
 ```{r}
 library(dplyr)
 
-avocado_regions_dataframe <- data.frame(
-  region = c("Midsouth", "Northeast", "Plains", "Southeast", "West", "SouthCentral", "GreatLakes" )
+avocado_major_regions <- data.frame(
+  region = c("Midsouth", "Northeast", "Plains", "Southeast", "West", "SouthCentral", "GreatLakes", "WestTexNewMexico" )
 )
 
-avocado_clean_regions <- avocado |>
-  semi_join(y = avocado_regions_dataframe, by = "region") |> 
-  separate(col=Date, into=c('Year', 'Month', "Day"), sep='-') |>
-  rename(small = `4046`, large = `4225`, extralarge = `4770`) 
+avocado_cali_regions <- data.frame(
+  region = c("SanFrancisco", "LosAngeles", "SanDiego","Sacramento"))
 
-avocado_clean_cities <- avocado |>  
-  anti_join(y = avocado_clean_regions, by = "region") |> 
-  separate(col=Date, into=c('Year', 'Month', "Day"), sep='-') |>
-  rename(small = `4046`, large = `4225`, extralarge = `4770`) 
+avocado_states <- data.frame(
+  region = c("California", "NewYork", "SouthCarolina"))
 
-#unique_regions = unique(avocado$region)
-#print(unique_regions)
-
-
-#unique_cities = unique(avocado_cities$region)
-#print(unique_cities)
+## Renaming Avocado Sizes
+avocado <- avocado |> 
+  rename("small" = `4046`, "large" = `4225`, "extralarge" = `4770`) |> 
+  separate(col=Date, into=c('Year', 'Month', "Day"), sep='-')
 ```
 
 ## Exercise
@@ -48,15 +42,11 @@ avocado_clean_cities <- avocado |>
 Exercise 1:
 
 ```{r}
-avocado_region_max_2017 <- avocado_clean_regions |> 
-  filter(type == "organic") |> 
+avocado |>
+  semi_join(y = avocado_major_regions, by = "region") |> 
+  filter(type == "organic", Year == 2017) |> 
   group_by(region) |> 
-  summarise(sum_small_total_volume = sum(small)) |> 
-  filter(region != "TotalUS") |> 
-  slice_max(sum_small_total_volume)
-
-avocado_region_max_2017
-  
+  summarise(sum_small_total_volume = sum(small))
 ```
 
 ### Answer:
@@ -66,12 +56,12 @@ The West Region sold the most organic, small Hass avocados in 2017
 Exercise 2:
 
 ```{r}
-avocado_max_month <- avocado |> 
-  separate(col=Date, into=c('Year', 'Month', "Day"), sep='-') |> 
+avocado |> 
+  select(Month, `Total Volume`) |> 
   group_by(Month) |> 
-  summarise(total_volume_for_months = sum(`4046` + `4225` + `4770`)) |> 
-  slice_max(total_volume_for_months)
-avocado_max_month
+  summarise(`Total Per Month` = sum(`Total Volume`)) |> 
+  slice_max(`Total Per Month`)
+
 ```
 
 ### Answer:
@@ -81,40 +71,42 @@ February is the month with the highest volume of avocado sales.
 Exercise 3:
 
 ```{r}
-avocado_max_totalvolume_top5 <- avocado_clean_cities |> 
+##Filtering Dataset To Just Metro Areas
+Metro_Avocado_Only <- avocado |> 
+  anti_join(avocado_major_regions, by = "region") |> 
+  anti_join(avocado_cali_regions, by = "region") |> 
+  anti_join(avocado_states, by = "region") |> 
+  filter(region != "TotalUS")
+
+##Calculations
+Metro_Top5 <- Metro_Avocado_Only |> 
   group_by(region) |> 
-  summarise(Total_Volume_By_City = sum(`Total Volume`)) |> 
-  slice_max(Total_Volume_By_City, n = 5)
+  summarize("Sum Total Volume" = sum(`Total Volume`)) |> 
+  arrange(desc(`Sum Total Volume`)) |> 
+  slice_head(n = 5)
 
-avocado_max_totalvolume_top5
-
-avocado_max_totalvolume_top5_plot <- avocado_clean_cities |> 
-  semi_join(avocado_max_totalvolume_top5, by = "region") |> 
-  group_by(region)
-
-ggplot(avocado_max_totalvolume_top5_plot, aes(x = region, y = `Total Volume`)) +
-         geom_boxplot()
+#Plotting
+Metro_Avocado_Only |> 
+  semi_join(Metro_Top5, by = "region") |> 
+  ggplot(mapping = aes(x = `Total Volume`, y = region))+
+  geom_boxplot()+
+  labs(x = "Total Volume Of Avocado Sales", y = "Top Five Metro Areas")
   
 ```
 
 ### Answer:
 
-California, GreatLakes, Los Angeles, New York, and South Central sold the most total avocados.
+Phoenix/Tucson, Houston, Denver, Dallas/FtWorth, and Baltimore sold the most total avocados.
 
 ### Reshaping
 
-#### Creating Reshaping data
-
-```{r}
-avocado_regions_dataframe <- data.frame(
-  region = c("LosAngeles", "SanDiego", "Sacramento", "SanFrancisco"))
-```
+#### Creating Reshaping Data
 
 ```{r}
 #| message: FALSE
 #| warning: FALSE
 organic_vs_conventional_avocado <- avocado |>
-  semi_join(avocado_regions_dataframe, by = "region") |> 
+  semi_join(avocado_cali_regions, by = "region") |> 
   group_by(region, type) |> 
   summarise(avg_avocado_price = mean(AveragePrice)) |> 
   pivot_wider(names_from = "type", values_from = "avg_avocado_price") |> 
@@ -132,22 +124,17 @@ San Francisco has the highest average price difference between conventional and 
 
 ```{r}
 proportion_avocado_data <- avocado |>
-  semi_join(avocado_regions_dataframe, by = "region") |> 
-  rename(
-    "Small" = "4046",
-    "Large" = "4225",
-    "XLarge" = "4770"
-  ) |> 
-  pivot_longer("Small":"XLarge",
+  semi_join(avocado_cali_regions, by = "region") |> 
+  pivot_longer("small":"extralarge",
                names_to = "Avocado Size",
                values_to = "Number Of Avocados") |> 
   mutate(Proportion = `Number Of Avocados` / mean(`Total Volume`))
 
 proportion_avocado_data |> 
   ggplot(mapping = aes(x = region, y = Proportion, fill = `Avocado Size`))+
-  geom_bar(position = position_fill(reverse = FALSE), stat = "identity") +
+  geom_bar(position = position_fill(reverse = TRUE), stat = "identity") +
   labs(x = "Regions of CA", y = "Proportion of Mean Avocados Sold") + 
-  ##Function was shown to me on discord lav chat and found in stack overflow
+  ##Function was shown to me on discord lab chat and found in stack overflow
   scale_x_discrete(guide = guide_axis(n.dodge=2))+
   facet_wrap(~type)
   
