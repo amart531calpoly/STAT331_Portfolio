@@ -3,25 +3,23 @@ title: "Andrew Martinez Stat 331 Challenge 3"
 format:
   html:
     code-fold: true
-  
+    self-contained: true
 editor: visual
 ---
-
-## Challenge 3 Hip-Hop Lyrics
 
 ### Declaring Libraries
 
 ```{r}
-#| message = FALSE
+#| message: false
 library(tidyverse)
 ```
 
 ### Loading In Data
 
 ```{r}
-#| message = FALSE
+#| message: false
 library(here)
-hiphop = read.csv(here::here("supporting_artifacts", "Lab & Challenge 3", 
+hiphop <- read.csv(here::here("supporting_artifacts", "Lab & Challenge 3", 
                              "hiphop.csv"))
 ```
 

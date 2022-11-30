@@ -1,18 +1,16 @@
 ---
-title: "Lab 2: Exploring Rodents with ggplot2"
+title: "Challenge 2: Exploring Rodents With ggplot 2"
 author: "Andrew Martinez"
 format:
   html:
-    code-fold: True
+    code-fold: true
     font-family: Georgia
+    self-contained: true
 editor: visual
 ---
 
-# Challenge 2: Exploring Rodents With ggplot 2
-
 ```{r setup}
-#| messages = FALSE
-getwd()
+#| message: false
 library(RColorBrewer)
 library(viridis)
 library(ggsci)
@@ -24,7 +22,6 @@ library(here)
 # Reading the Data into R
 
 ```{r data}
-# Code for question 1!
 surveys = read.csv(here::here("supporting_artifacts", "Lab & Challenge 2", "surveys.csv"), 
                    stringsAsFactors = FALSE)
 
@@ -34,6 +31,7 @@ surveys = read.csv(here::here("supporting_artifacts", "Lab & Challenge 2", "surv
 ## Challenge Code 1
 
 ```{r}
+#| warning: false
 ggplot(data = surveys, mapping = aes( x = weight, 
                                       y = species,
                                       color = genus)) + 

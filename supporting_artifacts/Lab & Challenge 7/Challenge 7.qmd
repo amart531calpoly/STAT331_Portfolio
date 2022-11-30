@@ -3,6 +3,7 @@ title: "Challenge 7 Andrew Martinez"
 format:
  html:
   code-fold: true
+  self-contained: true
 editor: visual
 ---
 

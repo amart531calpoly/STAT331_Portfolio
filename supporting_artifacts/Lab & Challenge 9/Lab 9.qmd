@@ -1,0 +1,122 @@
+---
+title: "Lab 9 Andrew Martinez"
+format:
+ html:
+  code-fold: true
+  self-contained: true
+editor: visual
+---
+
+## Libraries And Loading In Dataset
+
+```{r}
+#| message: false
+library(tidyverse)
+library(here)
+StateNamesA <- read_csv(here::here("supporting_artifacts", 
+                                   "Lab & Challenge 9", 
+                                   "StateNames_A.csv"))
+```
+
+## Filtering For Allison's By State
+
+```{r}
+#| echo: false
+StateNamesA <- StateNamesA |> 
+  rename("Sex at Birth" = "Gender") 
+StateNamesA |> 
+  pivot_wider(
+    names_from = `Sex at Birth`,
+    values_from = Count) |> 
+  filter(Name == "Allison") |> 
+  group_by(State) |> 
+  summarize(across(F:M, sum)) |> 
+  mutate(across(F:M, ~replace_na(.,0)))
+  
+```
+
+## Visualization of Allison's
+
+```{r}
+Summation_Of_Allisons <- StateNamesA |> 
+  filter(`Sex at Birth` == "F",
+          Name == "Allison") |> 
+  group_by(Year) |> 
+  summarize(Sum_Allison = sum(Count))
+
+Summation_Of_Allisons |> 
+  ggplot(mapping = aes(x = Year, y = Sum_Allison)) + 
+  geom_col() +
+  labs(title = "Number of Females Named Allison per Year in the US",
+       y = "")
+```
+
+## Modeling
+
+```{r}
+##Used Mcgritter Pipe so data = . Works
+Regression_Allison <- StateNamesA |> 
+  filter(Name == "Allison",
+        `Sex at Birth` == "F") %>%
+  lm(Count ~ Year, data = .)
+
+Regression_Allison |> 
+  broom::augment() |> 
+  ggplot(mapping = aes(x = Year, y = .fitted)) + 
+  geom_point()
+```
+
+## Regression Equation:
+
+### Y-Hat: 3881.886 - 1.876(Year)
+
+## Plot of Residuals
+
+```{r}
+Regression_Allison |> 
+  broom::augment() |> 
+  ggplot(mapping = aes(x = .fitted, y = .resid)) +
+  geom_point()+
+  labs(y = "Residual Values", x = "Fitted Values", title = "Visualization Of Residuals Vs Fitted Values")
+```
+
+## Residual Analysis:
+
+The vast majority of residuals reside around zero and appear to be random in nature. Because of this, it is reasonable to conclude that the model has a linear relationship. Additionally, one could make the argument for a slight negative linear trend because the outliers at the top left of the plot.
+
+## Question 8:
+
+Upon analyzing the slope, the model tells us that the number of females at birth named Allison decreases by an average of -1.876 each additional year. In this scenario, the intercept is negligible as it represents the total number of females at birth named Allison in a state at year zero.
+
+## Spelling By State (Allen's)
+
+```{r}
+#| message: false
+StateNamesA |> 
+  filter(`Sex at Birth` == "M",
+         Name %in% c("Allan", "Alan", "Allen")) |>
+  ggplot(mapping = aes(x = Year, y = Count, color = Name)) +
+  geom_smooth() +
+  labs(title = "Occurencies Of Different Spellings Of Allen Over Time")
+  
+```
+
+```{r}
+StateNamesA |> 
+  filter(`Sex at Birth` == "M",
+         Name %in% c("Allan", "Alan", "Allen")) |> 
+  pivot_wider(
+    names_from = Name,
+    values_from = Count) |> 
+  filter(
+    Year == 2000,
+    State %in% c("PA", "CA")) |>
+  mutate(
+    across(Allan:Allen, ~replace_na(., 0)),
+    AllenPercentage = round(Allen/ rowSums(across(Allen:Allan)), 2),
+    AlanPercentage = round(Alan/ rowSums(across(Allen:Allan)), 2),
+    AllanPercentage = round(Allan/ rowSums(across(Allen:Allan)), 2),
+  ) |> 
+  subset(select = -c(1,2))
+  
+```

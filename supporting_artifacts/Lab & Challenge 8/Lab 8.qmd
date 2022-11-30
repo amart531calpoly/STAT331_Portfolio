@@ -1,8 +1,9 @@
 ---
-title: "Lab 8"
+title: "Lab 8 Andrew Martinez"
 format:
  html:
   code-fold: true
+  self-contained: true
 editor: visual
 ---
 

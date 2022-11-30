@@ -3,7 +3,7 @@ title: "Andrew Martinez Stat 331 Lab 3"
 format:
   html:
     code-fold: true
-  
+    self-contained: true
 editor: visual
 ---
 
@@ -12,7 +12,7 @@ editor: visual
 ### Declaring Libraries
 
 ```{r}
-#| message = FALSE
+#| message: false
 library(tidyverse)
 library(here)
 ```
@@ -20,7 +20,7 @@ library(here)
 ### Loading In Data
 
 ```{r}
-#| message = FALSE
+#| message: false
 
 hiphop <- read.csv(here::here("supporting_artifacts", "Lab & Challenge 3", 
                               "hiphop.csv"))
@@ -82,32 +82,26 @@ I use the normal "unclean" dataset for this investigation as I would like to hav
 ### Variable: Sex
 
 ```{r}
-
-sex_demographic_clean_hiphop <- hiphop |> 
+hiphop |> 
   distinct(subj, .keep_all = TRUE) |> 
   count(sex)
-sex_demographic_clean_hiphop
-
 ```
 
 ### Variable: Age
 
 ```{r}
-age_demographic_clean_hiphop <- hiphop |> 
+hiphop |> 
   distinct(subj, .keep_all = TRUE) |> 
   summarise(mean_age = mean(age))
-age_demographic_clean_hiphop
 ```
 
 ### Variable: Ethnic
 
 ```{r}
-
-ethnic_demographic_clean_hiphop <- hiphop |> 
+hiphop |> 
   distinct(subj, .keep_all = TRUE) |> 
   group_by(ethnic) |> 
   count(ethnic)
-ethnic_demographic_clean_hiphop
 ```
 
 ### End Conclusion:
@@ -117,9 +111,9 @@ As a result of the filtering and analysis above, a vast majority of the particip
 ### Plot 1
 
 ```{r}
-plot_hiphop <- hiphop |>  
-    distinct(subj, .keep_all = TRUE)
-  ggplot(plot_hiphop, aes(x= age, y= ethnic, color = sex)) +
+hiphop |>  
+    distinct(subj, .keep_all = TRUE)|>
+  ggplot(aes(x= age, y= ethnic, color = sex)) +
   geom_boxplot() +
   labs(x= "Age Of Participant",
        y= "Ethnicity of Participant",
@@ -129,7 +123,9 @@ plot_hiphop <- hiphop |>
 ### Plot 2
 
 ```{r}
-ggplot(plot_hiphop, aes(x = age)) +
+hiphop |>  
+  distinct(subj, .keep_all = TRUE)|>
+  ggplot(aes(x = age)) +
   geom_density()
 
 ```

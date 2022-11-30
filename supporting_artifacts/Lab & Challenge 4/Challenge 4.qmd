@@ -3,10 +3,9 @@ title: "Challenge 4 Stat 331 Andrew Martinez"
 format:
   html:
     code-fold: true
+    self-contained: true
 editor: visual
 ---
-
-## Challenge 4
 
 ## Housing Dataset
 

@@ -3,6 +3,7 @@ title: "Lab 7 Andrew Martinez"
 format:
  html:
   code-fold: true
+  self-contained: true
 editor: visual
 ---
 
@@ -28,8 +29,7 @@ BlackFootFish |>
 ### Task Two
 
 ```{r}
-#| warning: false
-
+#| message: false
 BlackFootFish |> 
   mutate(Named_Trips = ifelse(trip == 1, 
                          "Trip 1", 
@@ -41,10 +41,11 @@ BlackFootFish |>
   facet_wrap(~Named_Trips) +
   labs(
     title = "Number Of NA Observations (Weight)",
-    x = "Year",
+    x = "Weight",
     fill = "Section Of Blackfoot River",
-    y = ""
-  )
+    y = "Year"
+  )+
+  coord_flip()
 ```
 
 ## Part Two
@@ -76,9 +77,7 @@ rescale_01 <- function(vector1){
 ### Task Three
 
 ```{r}
-x <- c(1:25, NA)
-
-rescale_01(x)
+rescale_01(c(1:25, NA))
 ```
 
 ### Task Four
@@ -98,7 +97,7 @@ ggplot(data = BlackFootFish, mapping = aes( y = length))+
 
 ```{r}
 rescale_column <- function(data, variables){
-  stopifnot(is.data.frame(data))
+  stopifnot(is.data.frame(data), is.numeric(data$variables))
   data <- data |> 
   mutate(
     across(

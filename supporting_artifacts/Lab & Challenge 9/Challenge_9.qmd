@@ -1,0 +1,81 @@
+---
+title: "Challenge 9 Andrew Martinez"
+format:
+ html:
+  code-fold: true
+  self-contained: true
+editor: visual
+---
+
+## Libraries & Loading In DataSet
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(DT)
+library(here)
+StateNamesA <- read_csv(here::here("supporting_artifacts", 
+                                   "Lab & Challenge 9", 
+                                   "StateNames_A.csv"))
+```
+
+## Data Table
+
+```{r}
+datatable(
+          head(StateNamesA), 
+          class = "cell-border stripe", 
+          colnames = c('Sex At Birth' = 'Gender', `# Of Occurrences` = "Count"),
+          caption = "Preview Table Of StateNamesA CSV Dataset"
+          )
+```
+
+## Part 1
+
+```{r}
+CountByState <- StateNamesA |> 
+  rename("Sex at Birth" = "Gender") |> 
+  pivot_wider(
+    names_from = `Sex at Birth`,
+    values_from = Count) |> 
+  filter(Name == "Allison") |> 
+  group_by(State) |> 
+  summarize(across(F:M, sum)) |> 
+  mutate(across(F:M, ~replace_na(.,0)))
+
+kable(CountByState, 
+      col.names = c("State", "Female", "Male"),
+      format = "html",
+      caption = "Allison's By State",
+      html_font = "Georgia",
+      align = "c"
+      )
+```
+
+## Part 2
+
+```{r}
+PercentagesByName <- StateNamesA |> 
+  rename("Sex at Birth" = "Gender") |> 
+  filter(`Sex at Birth` == "M",
+         Name %in% c("Allan", "Alan", "Allen")) |> 
+  pivot_wider(
+    names_from = Name,
+    values_from = Count) |> 
+  filter(
+    Year == 2000,
+    State %in% c("PA", "CA")) |>
+  mutate(
+    across(Allan:Allen, ~replace_na(., 0)),
+    AllenPercentage = round(Allen/ rowSums(across(Allen:Allan)), 2),
+    AlanPercentage = round(Alan/ rowSums(across(Allen:Allan)), 2),
+    AllanPercentage = round(Allan/ rowSums(across(Allen:Allan)), 2),
+  )
+kable(PercentagesByName, 
+      format = "html",
+      caption = "Percentages Of Allen Spellings Within CA & PA",
+      align = "c")
+```

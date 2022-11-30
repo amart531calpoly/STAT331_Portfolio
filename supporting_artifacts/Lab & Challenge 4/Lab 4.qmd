@@ -3,13 +3,14 @@ title: "Lab 4 Stat 331 Andrew Martinez"
 format:
   html:
     code-fold: true
+    self-contained: true
 editor: visual
 ---
 
 ## Loading In Data & Libraries
 
 ```{r}
-#| message: FALSE
+#| message: false
 library(tidyverse)
 library(here)
 avocado <- read_csv(here::here("supporting_artifacts", "Lab & Challenge 4",
@@ -39,7 +40,7 @@ avocado <- avocado |>
 
 ## Exercise
 
-Exercise 1:
+### Exercise 1:
 
 ```{r}
 avocado |>
@@ -53,7 +54,7 @@ avocado |>
 
 The West Region sold the most organic, small Hass avocados in 2017
 
-Exercise 2:
+### Exercise 2:
 
 ```{r}
 avocado |> 
@@ -68,7 +69,7 @@ avocado |>
 
 February is the month with the highest volume of avocado sales.
 
-Exercise 3:
+### Exercise 3:
 
 ```{r}
 ##Filtering Dataset To Just Metro Areas
@@ -103,8 +104,8 @@ Phoenix/Tucson, Houston, Denver, Dallas/FtWorth, and Baltimore sold the most tot
 #### Creating Reshaping Data
 
 ```{r}
-#| message: FALSE
-#| warning: FALSE
+#| message: false
+#| warning: false
 organic_vs_conventional_avocado <- avocado |>
   semi_join(avocado_cali_regions, by = "region") |> 
   group_by(region, type) |> 

@@ -4,10 +4,9 @@ author: "Andrew Martinez"
 format:
   html:
     code-fold: true
+    self-contained: true
 editor: visual
 ---
-
-# Lab 2: Exploring Rodents With ggplot 2
 
 # Set-up
 

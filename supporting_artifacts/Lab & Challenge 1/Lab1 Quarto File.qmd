@@ -5,7 +5,8 @@ format:
   html:
     fontcolor: 'red'
     font-family: Georgia
-    code-fold: True
+    code-fold: true
+    self-contained: true
 editor: visual
 ---
 

@@ -1,8 +1,9 @@
 ---
-title: "Lab 5"
+title: "Lab 5 Andrew Martinez"
 format:
   html: 
     code-fold: true
+    self-contained: true
 editor: visual
 ---
 
@@ -56,6 +57,7 @@ ggplot(data = surveys, mapping = aes(x = date,
 ## Time Series Plot 2
 
 ```{r}
+#| message: false
   surveys |> 
   separate(col=date, into=c('Year', 'Month', "Day"), sep='-') |> 
   group_by(Year, genus) |> 
@@ -83,6 +85,8 @@ ggplot(data = surveys, mapping = aes(day_of_week))+
 ## Time Series Plot #2
 
 ```{r}
+#| warning: false
+#| message: false
 surveys_no_na <- surveys |> 
   filter(day_of_week != "NA")
 
