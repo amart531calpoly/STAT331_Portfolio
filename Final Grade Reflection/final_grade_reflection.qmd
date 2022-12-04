@@ -1,0 +1,76 @@
+---
+title: "Final Grade Reflection"
+author: "Andrew Martinez"
+format:
+ html:
+  self-contained: true
+editor: visual
+---
+
+## I believe that I earned an A in Stat 331
+
+## 1) What learning targets have you demonstrated an understanding of?
+
+WD 1: LAB 8 Loading In data / Challenge 4 Loading in data
+
+WD 2: MORE  Lab 3 People under 20
+
+WD 3: Lab 3 Finding Justin Bieber PA 5 Part 2 Decoding a message
+
+WD-4: Lab 3 Recategorizing The Ethnic Variable / Lab 3 Variable: Age / Lab 4 Creating Reshaping Data / PA 5 Exercise 1
+
+WD-5: Challenge 4 Altering / Joining Dataset
+
+WD-6: Lab 4 Exercise 3
+
+WD-7:Lab 4 Creating Reshaping Data / Lab 4 Proportion of mean avocados sold CA regions Plot
+
+R-1: Lab 8 / Lab 5
+
+R-2: Challenge 8 Whole Document / Lab 2 Question 10 / Lab 7 Task 5 / Lab 4 Exercise 3
+
+R-3: Lab 7 Task 2 & Lab 7 Task 5 & Lab 3 Finding Justin Bieber
+
+DVS-1: Lab 5 Reordered Lab 2 Graph / Lab 5 Time Series Plot #3 / Lab 9 Plot of residuals
+
+DVS-2: Challenge 2 Challenge Code 1 / Challenge 2 Challenge Code (2&3) / Lab 5 Reordered Lab 2 Graph
+
+DVS-3: Challenge 7 Part 3 / Lab 7 Task Two
+
+DSV-4:Challenge 4 Altering / Joining Dataset / Lab 4 Exercise 1 / Lab 4 Exercise 2
+
+DVS-5: Challenge 3 Ethnic
+
+DVS-6: Challenge 9 Part 1 / Part 2
+
+DVS-7: Challenge 9 Data Table
+
+PE-1: Lab 7 Part 2 Task 2 -\> 3 & Part 2 5 -\> 6
+
+PE-2: Lab 8 Datasets/Libraries/Helper Functions created in PA8
+
+PE-3: Lab 8 A larger test Lab 8 Step 4
+
+PE-4: Challenge 3 Part A Lab 4 Exercise 1
+
+DSM-1: Practice Activity 9.1 & 9.2 Function
+
+DSM-2:Lab 9 Modeling / Lab 9 Regression Equation
+
+## 2) How have you demonstrated a commitment to continued learning?
+
+Throughout the quarter I have consistently revised and adhered to your suggestions within my labs and challenges. While the assignment arrow fiasco did occur, as reflected in my final portfolio that error was corrected in every lab/challenge. Additionally, I would seek your approval / advice on certain revisions during our office hours on nearly a weekly basis. To me, my revisions went well beyond the minimum, as I altered the "optional" revisions on a weekly basis. I am particularly proud of my lab 4 revisions, as I had many errors originally and took the time to finish all of the necessary and "optional" revisions. Beyond the revisions I made for this lab, I will include my written reflection for the lab in a word document in the appropriate folder. I am proud of these revisions as I really took the time to understand why you recommended these fixes to me, and did not just rush to fix them. For reference, I will include the revision HTML file you provided me, along with my final result. I believe that on a vast majority of my challenges I demonstrated "extended thinking." To me, extended thinking is going beyond the minimum to get a complete on a challenge, and attempting thoughtful, creative, or optional additions to the baseline. For example, on Challenge 2 I completed all three of the difficulty levels, going beyond just completing one. Additionally, for Challenge 4 I opted to create my own dataset, scraping data from Zillow to mimic housing prices in SF, LA, SD, and Sacramento. While I didn't have the time to create a very large dataset, I showed the critical thinking skills required to create my own dataset that corresponds to the prompt, along with populating it with appropriate values. Furthermore, for Challenge 8 I opted to complete all three challenges laid out in the module, not settling for just completing one. Lastly, for Challenge 9 I went above and beyond in formatting both in the Kable tables and the Datatable. For the Kable tables, I learned how to add captions and align the columns. Additionally, for the Datatable I learned how to assign a class to the datatable, add captions, and change column names. Because I demonstrated success in the two pillars of continued learning, revised thinking and extended thinking, I believe I have shown a great commitment to continued learning.
+
+## 3)How have you grown as a team member and leader?
+
+Throughout the quarter I continued to grow as both a team member and leader. At the beginning of the quarter I was very shy with my group mates and possibly came off as standoffish. As I spent more time with my group members, I opened up more. After the first few weeks, I believe I took a leadership role within the group, helping them understand the class assignments. Along with making sure they were understanding the content we covered in class, I reached out to our group chat after class and made sure they didn't have any pressing questions regarding the labs or challenges. From keeping to myself at the beginning of the quarter, to then reaching out on my own, I believe I grew a lot as a team member and leader.
+
+## 4) How have you contributed to creating a respectful classroom learning community?
+
+I believe I have contributed to creating a respectful classroom learning community in a variety of ways. Firstly, I believe all of the peer-code reviews have contributed to a learning community, in addition to my participation in the discord community in class. Additionally, all of the questions I answer from my peers in class also helps create a positive learning community. I will include a screenshot of one of the peer code reviews I have done, along with some discord messages I have sent in the appropriate folder. Lastly, I believe the questions I ask in class contribute to a learning community. I believe the many questions I ask during your lecture help other students who don't understand, while reinforcing the understanding of students who do understand. Because of that, I would argue that the questions I ask in class contribute to creating a respectful classroom learning community.
+
+## 5) Are you accomplishing the goals you outlined for yourself at the start of the course?
+
+I have accomplished the goals I outlined for myself at the start of the course. As mentioned, my main goal of the quarter was to try and have fun, as the ungrading aspect of the course took most of the test anxiety away from me. I had a great time learning R in this class, and believe that can be seen in many of my challenges. Additionally, my excitement has gone outside of the scope of this class. This class sparked a significant interest within data science for me, which has lead me to network and meet with many faculty at Cal Poly SLO, such as Lucas Pierce, and many alumni in order to determine how I could pursue a career in data science. Because I have demonstrated continued learning, and also pursued networking opportunities outside of class, I would argue that my goal of having fun has been accomplished.
+
+## 

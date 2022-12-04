@@ -1,0 +1,67 @@
+---
+title: "Challenge 7 Andrew Martinez"
+format:
+ html:
+  code-fold: true
+  self-contained: true
+editor: visual
+---
+
+## Loading In Dataset / Libraries
+
+```{r}
+#| message: false
+library(tidyverse)
+library(here)
+BlackFootFish = read_csv(here::here("supporting_artifacts", "Learning Targets", "BlackfootFish.csv"))
+```
+
+## Part One
+
+```{r}
+Replacing_Impossible_Measurements <- function(vec, min_val, max_val){
+  stopifnot(is.numeric(vec))
+  case_when(
+    {{vec}} > max_val ~ NA_real_,
+    {{vec}} < min_val ~ NA_real_,
+    TRUE ~ {{vec}}
+  )
+}
+BlackFootFish <- BlackFootFish |> 
+  mutate(
+        length = Replacing_Impossible_Measurements(length, 120, 300),
+        weight =  Replacing_Impossible_Measurements(weight, 70, 200)
+  )
+```
+
+Explanation:
+
+## Part Two
+
+```{r}
+Condition_Index = function(data, length_val, weight_val){
+  data <- data |> 
+    na.omit() |> 
+    mutate(`Condition Index` = ({{weight_val}} / ({{length_val}}^3)) * 100)
+  return(data)
+}
+```
+
+## Part Three
+
+```{r}
+BlackFootFish_2 <- BlackFootFish |> 
+  Condition_Index(length_val = length, weight_val = weight) |> 
+  mutate(Named_Trips = ifelse(trip == 1, 
+                         "Trip 1", 
+                         "Trip 2")) |> 
+  group_by(Named_Trips, year, species, section) |> 
+  summarize(`Condition Index` = mean(`Condition Index`))
+
+ggplot(data = BlackFootFish_2, mapping = aes(x = year, y = `Condition Index`)) +
+  geom_line() +
+  facet_grid(cols = vars(species), rows = vars(Named_Trips))+ 
+  labs(x = "Year",
+       title = "Mean Condition Index For Each Year By Trip And Species",
+       y = "")
+```

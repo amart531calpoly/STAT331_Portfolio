@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Andrew Martinez Stat 331 Lab 3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="martinezandrewjohn_52391_8300367_Lab3_files/libs/clipboard/clipboard.min.js"></script>
+<script src="martinezandrewjohn_52391_8300367_Lab3_files/libs/quarto-html/quarto.js"></script>
+<script src="martinezandrewjohn_52391_8300367_Lab3_files/libs/quarto-html/popper.min.js"></script>
+<script src="martinezandrewjohn_52391_8300367_Lab3_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="martinezandrewjohn_52391_8300367_Lab3_files/libs/quarto-html/anchor.min.js"></script>
+<link href="martinezandrewjohn_52391_8300367_Lab3_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="martinezandrewjohn_52391_8300367_Lab3_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="martinezandrewjohn_52391_8300367_Lab3_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="martinezandrewjohn_52391_8300367_Lab3_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="martinezandrewjohn_52391_8300367_Lab3_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Andrew Martinez Stat 331 Lab 3</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p style="color:red;">
+You have six questions with requested revisions, as well as formatting your report.
+</p>
+<p style="color:blue;">
+You have revisions to remove the unnecessary output from your rendered document.
+</p>
+<p style="color:red;">
+The style guide we use in this class uses <code>&lt;-</code> to create objects <strong>not</strong> <code>=</code>. Please adjust this in your future code.
+</p>
+<section id="lab-3-hip-hop-lyrics" class="level2">
+<h2 class="anchored" data-anchor-id="lab-3-hip-hop-lyrics">Lab 3 Hip-Hop Lyrics</h2>
+<section id="declaring-libraries" class="level3">
+<h3 class="anchored" data-anchor-id="declaring-libraries">Declaring Libraries</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p style="color:red;">
+Careful! Options for code chunks are specified <strong>inside</strong> the code chunk in a Quarto document. See this resource for more information: <a href="https://quarto.org/docs/computations/execution-options.html" class="uri">https://quarto.org/docs/computations/execution-options.html</a> &lt;
+</p>
+</section>
+<section id="loading-in-data" class="level3">
+<h3 class="anchored" data-anchor-id="loading-in-data">Loading In Data</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>hiphop <span class="ot">=</span> <span class="fu">read.csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Week 3"</span>, <span class="st">"Lab 3"</span>, <span class="st">"hiphop.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+
+</div>
+<p style="color:red;">
+Careful! Options for code chunks are specified <strong>inside</strong> the code chunk in a Quarto document. See this resource for more information: <a href="https://quarto.org/docs/computations/execution-options.html" class="uri">https://quarto.org/docs/computations/execution-options.html</a> &lt;
+</p>
+</section>
+</section>
+<section id="summary-of-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-dataset">Summary Of Dataset</h2>
+<p>The Hip-Hop dataset outlines various definitions of vocabulary commonly found in AAE (African-American English) dialect. These definitions were given by 168 participants from various backgrounds. The purpose of the data set is to see if musical tastes, with a focus in Hip-Hop, can predict AAE knowledge to a higher degree than ethnicity, social network phenomena, and general pop-culture knowledge. The rows of the dataset are each unique definition for a specific vocab word found within AAE. The NA values in this dataset were replaced with a float value of 0.0, the benefit of this would be that you can do summary statistics without having errors, however the summary statistics would be heavily skewed due to the value of 0 pulling them downwards. Additionally, some of the variables with NA have the mean value of the variable instead of an NA. Replacing some of the NA values with the mean of the dataset will pull the percentiles closer to the mean.</p>
+<p style="color:red;">
+Where was this study conducted?
+</p>
+<p style="color:red;">
+How was the sample of participants selected?
+</p>
+<p style="color:red;">
+How were the participants definitions coded?
+</p>
+<p style="color:red;">
+<strong>G</strong>
+</p>
+<section id="cleaning-the-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="cleaning-the-dataset">Cleaning the Dataset</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>clean_hiphop <span class="ot">=</span> hiphop <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), factor)) <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(city <span class="sc">!=</span> <span class="dv">0</span>, county <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(numPreferredArtists)) <span class="sc">|&gt;</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(numOverallArtists))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p style="color:red;">
+</p><p>You should only call the <code>filter()</code> function once!</p>
+<p></p>
+<p style="color:red;">
+</p><p>The <code>drop_na()</code> function also removes missing values for specific variables…</p>
+<p></p>
+<p style="color:red;">
+</p><p><strong>G</strong></p>
+<p></p>
+</section>
+<section id="changes-made" class="level3">
+<h3 class="anchored" data-anchor-id="changes-made">Changes Made:</h3>
+<ul>
+<li><p>Changed Strings into Factors</p></li>
+<li><p>Filtered out rows where city &amp; county = 0</p></li>
+<li><p>filtered out rows where numPreferredArtists &amp; numOverallArtists = NA</p></li>
+</ul>
+<p>Explanation:</p>
+<p>I filtered out rows with no city / county values, as I do not like having incomplete rows of data within my dataset. I altered the character variables to factors for more efficiency, as factor variables have more efficient memory usage. Lastly, I filtered out rows where numPreferredArtists &amp; numOverallArtists = NA because I do not like rows of incomplete data within my dataset.</p>
+</section>
+<section id="unique-words-studied" class="level3">
+<h3 class="anchored" data-anchor-id="unique-words-studied">Unique Words Studied</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(clean_hiphop<span class="sc">$</span>word)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] [to be] ghost     5-0               A-town            ashy             
+ [5] ay yo trip        ballin'           beezy             bones            
+ [9] boo               boughie           break someone out catch the vapors 
+[13] chedda            cheese            chitlins          cop my steezy    
+[17] CP time           crossroads        crump             cuddie           
+[21] dap               dead presidents   dollar cab        domino           
+[25] duckets           dukey rope        dun               face gator       
+[29] facheezie         feel me           fetti             finna            
+[33] ghostride         good hair         gouda             grip             
+[37] grip grain        guap              hard              heezy            
+[41] hella             humming           mail              make it rain     
+[45] off the hook      player hater      plex              road dog         
+[49] roll deep         rollie            saditty           skrilla          
+[53] straight cash     stupid            sweatbox          talking jazz     
+[57] The Nation        toe up            trife             trill            
+[61] twurk             what it do        What it is?       wile out         
+64 Levels: [to be] ghost 5-0 A-town ashy ay yo trip ballin' beezy bones ... wile out</code></pre>
+</div>
+</div>
+<p>As seen from the code, there are 64 unique words in the data set.</p>
+<p style="color:red;">
+This works, but try not using the <code>$</code>! There are functions we’ve learned in this class that will carry out this task, too… Moreover, I want an output of the single number for the amount of words, not a list of words.
+</p>
+<p style="color:red;">
+<strong>G</strong>
+</p>
+</section>
+<section id="re-categorizing-the-ethnic-variable" class="level3">
+<h3 class="anchored" data-anchor-id="re-categorizing-the-ethnic-variable">Re-categorizing The Ethnic Variable</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>clean_hiphop <span class="ot">=</span> clean_hiphop <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ethnic_categorical =</span> <span class="fu">ifelse</span>(ethnic <span class="sc">==</span> <span class="st">"white"</span>, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"white"</span>, </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"non-white"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(ethnic_categorical, <span class="at">.after =</span> ethnic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p style="color:red;">
+<strong>S</strong>
+</p>
+<p style="color:red;">
+Nice use of the <code>relocate()</code> function!
+</p>
+</section>
+<section id="section" class="level3">
+<h3 class="anchored" data-anchor-id="section"></h3>
+</section>
+<section id="investigation-of-demographics-within-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="investigation-of-demographics-within-dataset">Investigation Of Demographics Within Dataset</h3>
+<p>I use the normal “unclean” dataset for this investigation as I would like to have more datapoints to truly see some statistical analysis of the whole dataset rather than a subset. Additionally, The NA &amp; 0 values i cleaned would not make a difference in this investigation.</p>
+</section>
+<section id="variable-sex" class="level3">
+<h3 class="anchored" data-anchor-id="variable-sex">Variable: Sex</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sex_demographic_clean_hiphop <span class="ot">=</span> hiphop <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(subj, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="variable-age" class="level3">
+<h3 class="anchored" data-anchor-id="variable-age">Variable: Age</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>age_demographic_clean_hiphop <span class="ot">=</span> hiphop <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(subj, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="variable-ethnic" class="level3">
+<h3 class="anchored" data-anchor-id="variable-ethnic">Variable: Ethnic</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ethnic_demographic_clean_hiphop <span class="ot">=</span> hiphop <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(subj, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ethnic) <span class="sc">|&gt;</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(ethnic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p style="color:red;">
+Where is the code output to confirm your summary?
+</p>
+<p style="color:red;">
+<strong>G</strong>
+</p>
+</section>
+<section id="end-conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="end-conclusion">End Conclusion:</h3>
+<p>As a result of the filtering and analysis above, a vast majority of the participants seem to be female, white, and the participants have an average age of 20.02 years old. For reference, about 69.64% of the participants were female, and 80.35% of the participants were white.</p>
+</section>
+<section id="plot-1" class="level3">
+<h3 class="anchored" data-anchor-id="plot-1">Plot 1</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hiphop, <span class="fu">aes</span>(<span class="at">x=</span> age, <span class="at">y=</span> ethnic, <span class="at">color =</span> sex)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Age Distribution By Race"</span>, </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span> <span class="st">"Age Of Participant"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span> <span class="st">"Ethnicity of Participant"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"sex"</span>) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="martinezandrewjohn_52391_8300367_Lab3_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p style="color:red;">
+The ggplot package is contained within the tidyverse package, so you do not need to load it.
+</p>
+<p style="color:red;">
+Consider the nature of the data when plotting. Is every participant on one row? If not, what should you do with the data <strong>before</strong> plotting it?
+</p>
+<p style="color:red;">
+Nice work figuring out how to center the plot title. However, plot titles are generally discouraged unless they include information <strong>not</strong> captured by either axis label
+</p>
+</section>
+<section id="plot-2" class="level3">
+<h3 class="anchored" data-anchor-id="plot-2">Plot 2</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hiphop, <span class="fu">aes</span>(<span class="at">x=</span> age)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sex) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Age Distribution By Sex"</span>, </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span> <span class="st">"Age Of Participant"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span> <span class="st">"Sex of Participant"</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="martinezandrewjohn_52391_8300367_Lab3_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p style="color:red;">
+Not only do you not need to load in the ggplot package, you do not need to load it in multiple times.
+</p>
+<p style="color:red;">
+Is there a better alternative to these density plots that you learned in Challenge 2?
+</p>
+<p style="color:red;">
+<strong>G</strong>
+</p>
+</section>
+<section id="familiar-words" class="level3">
+<h3 class="anchored" data-anchor-id="familiar-words">Familiar Words</h3>
+<section id="people-under-20" class="level4">
+<h4 class="anchored" data-anchor-id="people-under-20">People Under 20</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">##MAX</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>young_clean_hiphop <span class="ot">=</span> clean_hiphop <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&lt;</span> <span class="dv">20</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(word, familiarity) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(word) <span class="sc">|&gt;</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(familiarity) <span class="sc">|&gt;</span> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_familiarity =</span> familiarity <span class="sc">*</span> n) <span class="sc">|&gt;</span> </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">average_familiarity =</span> total_familiarity <span class="sc">/</span> <span class="dv">57</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sum_average_familiarity =</span> <span class="fu">sum</span>(average_familiarity))</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_max</span>(young_clean_hiphop,young_clean_hiphop<span class="sc">$</span>sum_average_familiarity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  word    sum_average_familiarity
+  &lt;fct&gt;                     &lt;dbl&gt;
+1 feel me                    4.51</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_min</span>(young_clean_hiphop,young_clean_hiphop<span class="sc">$</span>sum_average_familiarity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  word       sum_average_familiarity
+  &lt;fct&gt;                        &lt;dbl&gt;
+1 The Nation                       1</code></pre>
+</div>
+</div>
+<p style="color:red;">
+You are finding the average by hand. There is a function to do this in one line, which you should use. Why take the sum of the averages? What does that tell you?
+</p>
+<p style="color:red;">
+<strong>G</strong>
+</p>
+<p>Most Familiar: “Feel Me”</p>
+<p>Least Familiar: “The Nation”</p>
+</section>
+</section>
+<section id="non-white-women" class="level3">
+<h3 class="anchored" data-anchor-id="non-white-women">Non-White Women</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">##MAX</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>non_white_clean_hiphop <span class="ot">=</span> clean_hiphop <span class="sc">|&gt;</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ethnic <span class="sc">!=</span> <span class="st">"white"</span>, sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(word, familiarity) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(word) <span class="sc">|&gt;</span> </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(familiarity) <span class="sc">|&gt;</span> </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_familiarity =</span> familiarity <span class="sc">*</span> n) <span class="sc">|&gt;</span> </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">average_familiarity =</span> total_familiarity <span class="sc">/</span> <span class="dv">12</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sum_average_familiarity =</span> <span class="fu">sum</span>(average_familiarity))</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_max</span>(non_white_clean_hiphop,non_white_clean_hiphop<span class="sc">$</span>sum_average_familiarity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  word       sum_average_familiarity
+  &lt;fct&gt;                        &lt;dbl&gt;
+1 what it do                    4.83</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_min</span>(non_white_clean_hiphop,non_white_clean_hiphop<span class="sc">$</span>sum_average_familiarity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 2
+  word              sum_average_familiarity
+  &lt;fct&gt;                               &lt;dbl&gt;
+1 break someone out                       1
+2 dollar cab                              1
+3 domino                                  1
+4 dukey rope                              1
+5 humming                                 1
+6 plex                                    1
+7 rollie                                  1
+8 The Nation                              1</code></pre>
+</div>
+</div>
+<p style="color:red;">
+We don’t use the <code>$</code> in this class when working with pipeable functions.
+</p>
+<p style="color:red;">
+<strong>G</strong>
+</p>
+<p>Most Familiar: “What It Do”</p>
+<p>Least Familiar: All of the 8 phrases from the 2nd above.</p>
+</section>
+<section id="white-men-above-the-age-of-30" class="level3">
+<h3 class="anchored" data-anchor-id="white-men-above-the-age-of-30">White Men Above The Age Of 30</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">##MAX</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>white_30_clean_hiphop <span class="ot">=</span> clean_hiphop <span class="sc">|&gt;</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ethnic <span class="sc">==</span> <span class="st">"white"</span>, sex <span class="sc">==</span> <span class="st">"Male"</span>, age <span class="sc">&gt;</span> <span class="dv">30</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(word, familiarity) <span class="sc">|&gt;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(word) <span class="sc">|&gt;</span> </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(familiarity) <span class="sc">|&gt;</span> </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_familiarity =</span> familiarity <span class="sc">*</span> n) <span class="sc">|&gt;</span> </span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">average_familiarity =</span> total_familiarity) <span class="sc">|&gt;</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sum_average_familiarity =</span> <span class="fu">sum</span>(average_familiarity))</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_max</span>(white_30_clean_hiphop,white_30_clean_hiphop<span class="sc">$</span>sum_average_familiarity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  word         sum_average_familiarity
+  &lt;fct&gt;                          &lt;dbl&gt;
+1 5-0                                5
+2 hard                               5
+3 make it rain                       5</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_min</span>(white_30_clean_hiphop,white_30_clean_hiphop<span class="sc">$</span>sum_average_familiarity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 59 × 2
+   word              sum_average_familiarity
+   &lt;fct&gt;                               &lt;dbl&gt;
+ 1 [to be] ghost                           1
+ 2 A-town                                  1
+ 3 ashy                                    1
+ 4 ay yo trip                              1
+ 5 ballin'                                 1
+ 6 beezy                                   1
+ 7 bones                                   1
+ 8 boo                                     1
+ 9 boughie                                 1
+10 break someone out                       1
+# … with 49 more rows</code></pre>
+</div>
+</div>
+<p>Most Familiar: 3 phrases from the top output</p>
+<p>Least Familiar: All of the 59 phrases from the 2nd above</p>
+<p style="color:red;">
+Address my comments for <strong>every</strong> part of this question.
+</p>
+<p style="color:red;">
+<strong>G</strong>
+</p>
+</section>
+<section id="finding-justin-bieber" class="level3">
+<h3 class="anchored" data-anchor-id="finding-justin-bieber">Finding Justin Bieber</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>justin_bieber_data <span class="ot">=</span> hiphop <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Male"</span>, age <span class="sc">&gt;=</span> <span class="dv">17</span>, age <span class="sc">&lt;=</span> <span class="dv">23</span>, ethnic <span class="sc">==</span> <span class="st">"white"</span>, city <span class="sc">&gt;=</span> <span class="dv">10000</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>         city <span class="sc">&lt;=</span> <span class="dv">60000</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(bieber)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Note: I opted to not include the output for this slice as it was extremely long. Please see the dataset for proof that subject 17 has the highest Bieber score.</p>
+<p>I would say that subject 17 is Justin Bieber. He fulfills the gender, age, and city requirements, and has the highest “Bieber” score of the dataset.</p>
+<p style="color:red;">
+How could you write code to find the <strong>one</strong> row with the maximum of the <code>bieber</code> variable and the subject associated with it?
+</p>
+<p style="color:red;">
+<strong>S</strong>
+</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

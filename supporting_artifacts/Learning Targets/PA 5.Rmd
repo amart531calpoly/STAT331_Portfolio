@@ -1,0 +1,32 @@
+---
+title: "Practice Activity 5"
+author: "Andrew Martinez"
+date: "2022-10-18"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(here)
+library(lubridate)
+suspect_times = read_csv(here::here("supporting_artifacts", "Learning Targets", "suspect_times.csv"))
+```
+
+## Exercise 1
+
+```{r}
+thanksgiving = ymd("20181122")
+pm_suspect_times = suspect_times |> 
+  mutate(Time.Spotted = force_tz(Time.Spotted, tzone = "America/Los_Angeles")) |> 
+  filter(pm(Time.Spotted) == TRUE,
+         wday(Time.Spotted, label = TRUE) != c("Tue","Thu"),
+         day(thanksgiving - 35) <= day(Time.Spotted),
+         day(Time.Spotted) <= day(thanksgiving + 35),
+         pm(force_tz(Time.Spotted, tzone = "GMT")) == TRUE,
+         mday(Time.Spotted) == 23 | mday(Time.Spotted) == 22,
+         (difftime(ymd("19700101"), Time.Spotted, tz,
+         units = "mins") %% 10 == 0))
+  
+  
+  
+```

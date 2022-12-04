@@ -1,5 +1,25 @@
 ---
 title: "Lightening Round Essays"
-format: html
-editor: visual
+format:
+ html:
+  self-contained: true
+  editor: visual
 ---
+
+## Question 1:
+
+## Question 2: Iteration within R
+
+### The most difficult topic of the class for me was week 8's iteration content. As I have mentioned before I am concurrently taking python classes and the iteration in R is very different from what I am used to. Because of this, I had a hard time with week 8's content. Without the starter code given in lab 8, it is very likely my struggles would have been much greater.
+
+## Question 3: Data visualization
+
+### In contrast I thought the data visualizations came pretty easily to me. In particular Lab 2 & Challenge 2 were quite easy to me. I will note, while the rudimentary data visualizations came easy to me, I learned there is a lot to learn in order to properly visualize data. For example, as I wanted to spice up my graphs in the labs & challenges I quickly realized there is a seemingly infinite number of modifications and alterations you can perform to your graphs. In summary, the basic plots you can create self explanatory, but the further you dive into the visualization rabbit hole, the code become very convoluted.
+
+## Question 4: Data Visualization
+
+### I would say visualizing data was the most interesting part of the class for me. I really enjoy the idea of visualizing data, as you are telling a story. I did realize that there is a quite a rabbit hole you can go down with visualization, and it is a skill that a very long time to master!
+
+## Question 5: Don't be afraid to ask questions.
+
+### I would tell the student to ask questions. Because this is an introductory course, a lot of the resources online like stack overflow will be very difficult to understand, so don't be afraid to ask the teacher and TA for help.

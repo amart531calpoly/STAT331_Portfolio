@@ -1,0 +1,42 @@
+---
+title: "Practice Activity 5 2"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(stringr)
+message <- read_csv("https://www.dropbox.com/s/lgpn3vmksk3ssdo/scrambled_message.txt?dl=1") %>%
+  pull(Word)
+```
+
+Warm-Up Exercises
+
+```{r}
+sum(str_length(message))
+sum(str_count(message, "\\w"))
+str_subset(message, "^m")
+str_subset(message, "z$")
+str_subset(message, "[:punct:]")
+str_subset(message, "\\w")
+```
+
+```{r}
+max(str_length(str_subset(message, "\\w")))
+str_subset(message, ".{25}")
+```
+
+Decoding a message
+
+```{r}
+message = str_trim(message, side = "both")
+message = str_trunc(message, 15, side = c("right"))
+message = str_remove_all(message, "ugh+[:punct:]")
+message = str_replace_all(message, "a{2}", "ee")
+message = str_replace_all(message, "z", "t")
+message = str_replace_all(message, "[bB]$", "y")
+message = str_replace_all(message, "^[kK]", "v")
+message = str_c(message, "", collapse = " ")
+message
+```
